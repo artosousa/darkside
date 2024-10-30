@@ -37,8 +37,9 @@
 .mega-menu__list {
   display: grid;
   gap: 1.8rem 4rem;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   list-style: none;
+  padding: 40px !important;
 }
 
 .mega-menu__link {
@@ -54,20 +55,33 @@
 
 .mega-menu__link--level-2 {
   font-weight: bold;
+  display: flex;
+  flex-direction: column;
 }
 
-.header--top-center .mega-menu__list {
+/* .header--top-center .mega-menu__list {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   column-gap: 0;
-}
+} */
 
-.header--top-center .mega-menu__list > li {
-  width: 16%;
-  padding-right: 2.4rem;
+.header--top-center .mega-menu__list li {
+  width: 100% !important;
 }
-
+.header--top-center .mega-menu__list > li > ul {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.header--top-center .mega-menu__list > li > ul.has-children {
+  border-top: 1px solid #000;
+  padding-top: 25px;
+}
+.header--top-center .mega-menu__list > li > ul > li {
+  width: 50% !important;
+}
 .mega-menu__link:hover,
 .mega-menu__link--active {
   color: rgb(var(--color-foreground));
@@ -84,4 +98,23 @@
 
 .mega-menu__list--condensed .mega-menu__link {
   font-weight: normal;
+}
+.has-image {
+  padding-right: 40px;
+  gap: 40px;
+  display: inline-flex;
+  flex-direction: row;
+}
+
+.has-image > ul {
+  width: 80%;
+  padding-right: 0px !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.has-image .menu-image {
+  width: 20%;
+}
+.has-image .menu-image img {
+  width: 100% !important;
+  height: auto !important;
 }

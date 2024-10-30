@@ -137,7 +137,7 @@
   -%}
   <header class="header header--{{ section.settings.logo_position }} header--mobile-{{ section.settings.mobile_logo_position }} page-width{% if section.settings.menu_type_desktop == 'drawer' %} drawer-menu{% endif %}{% if section.settings.menu != blank %} header--has-menu{% endif %}{% if has_app_block %} header--has-app{% endif %}{% if social_links %} header--has-social{% endif %}{% if shop.customer_accounts_enabled %} header--has-account{% endif %}{% if localization_forms %} header--has-localizations{% endif %}">
     {%- liquid
-      if section.settings.menu != blank
+      if section.blocks.size > 0
         render 'header-drawer'
       endif
 
@@ -175,8 +175,22 @@
         </h1>
       {%- endif -%}
     {%- endif -%}
+    
+    {% if section.settings.menu_type_desktop != drawer %}
+      <nav class="header__inline-menu">
+    {% endif %}
+      {% if section.settings.menu_type_desktop != drawer %}
+        <ul class="list-menu list-menu--inline" role="list">
+      {%endif%}
+        {% for block in section.blocks %}
+          {% if block.type == 'nav_menu' %}
+            {% render 'header-mega-menu-blocks', block: block %}
+          {% endif %}
+        {% endfor %}
+      {% if section.settings.menu_type_desktop != drawer %}</ul>{% endif %}
+    {% if section.settings.menu_type_desktop != drawer %}</nav> {% endif %}
 
-    {%- liquid
+    {% comment %} {%- liquid
       if section.settings.menu != blank
         if section.settings.menu_type_desktop == 'dropdown'
           render 'header-dropdown-menu'
@@ -184,8 +198,7 @@
           render 'header-mega-menu'
         endif
       endif
-    %}
-
+    %} {% endcomment %}
     {%- if section.settings.logo_position == 'middle-center' -%}
       {%- if request.page_type == 'index' -%}
         <h1 class="header__heading">
@@ -456,7 +469,6 @@
 {
   "name": "t:sections.header.name",
   "class": "section-header",
-  "max_blocks": 3,
   "settings": [
     {
       "type": "select",
@@ -482,12 +494,6 @@
       "default": "middle-left",
       "label": "t:sections.header.settings.logo_position.label",
       "info": "t:sections.header.settings.logo_help.content"
-    },
-    {
-      "type": "link_list",
-      "id": "menu",
-      "default": "main-menu",
-      "label": "t:sections.header.settings.menu.label"
     },
     {
       "type": "select",
@@ -650,6 +656,28 @@
     }
   ],
   "blocks": [
+    {
+      "type": "nav_menu",
+      "name": "Navigation Menu",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Nav Item"
+        },
+        {
+          "type": "link_list",
+          "id": "link_list",
+          "label": "Menu List"
+        },
+        {
+          "type": "image_picker",
+          "id": "menu_img",
+          "label": "Mega Nav Image Block"
+        }
+      ]
+
+    },
     {
       "type": "@app"
     }
