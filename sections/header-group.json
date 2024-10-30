@@ -22,7 +22,9 @@
           }
         }
       },
-      "block_order": ["announcement-bar-0"],
+      "block_order": [
+        "announcement-bar-0"
+      ],
       "settings": {
         "color_scheme": "",
         "show_line_separator": true,
@@ -35,9 +37,69 @@
     },
     "header": {
       "type": "header",
+      "blocks": {
+        "nav_menu_tVqp8x": {
+          "type": "nav_menu",
+          "settings": {
+            "title": "Engine",
+            "link_list": "engine"
+          }
+        },
+        "nav_menu_MrjNKL": {
+          "type": "nav_menu",
+          "settings": {
+            "title": "Suspension",
+            "link_list": "suspension",
+            "menu_img": "shopify://shop_images/SampleAd.jpg"
+          }
+        },
+        "nav_menu_cV9Lt4": {
+          "type": "nav_menu",
+          "settings": {
+            "title": "Wheels / Tires",
+            "link_list": "wheels-tires"
+          }
+        },
+        "nav_menu_Yie44R": {
+          "type": "nav_menu",
+          "settings": {
+            "title": "Brakes",
+            "link_list": "brakes"
+          }
+        },
+        "nav_menu_6EGgLn": {
+          "type": "nav_menu",
+          "settings": {
+            "title": "Interior",
+            "link_list": "interior"
+          }
+        },
+        "nav_menu_GWCrwX": {
+          "type": "nav_menu",
+          "settings": {
+            "title": "Exterior",
+            "link_list": "exterior"
+          }
+        },
+        "nav_menu_yxem77": {
+          "type": "nav_menu",
+          "settings": {
+            "title": "Apparel",
+            "link_list": "apparel"
+          }
+        }
+      },
+      "block_order": [
+        "nav_menu_tVqp8x",
+        "nav_menu_MrjNKL",
+        "nav_menu_cV9Lt4",
+        "nav_menu_Yie44R",
+        "nav_menu_6EGgLn",
+        "nav_menu_GWCrwX",
+        "nav_menu_yxem77"
+      ],
       "settings": {
         "logo_position": "top-center",
-        "menu": "new-main-menu",
         "menu_type_desktop": "mega",
         "sticky_header_type": "on-scroll-up",
         "show_line_separator": true,
@@ -53,5 +115,8 @@
       }
     }
   },
-  "order": ["announcement-bar", "header"]
+  "order": [
+    "announcement-bar",
+    "header"
+  ]
 }
