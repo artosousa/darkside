@@ -2593,9 +2593,7 @@ menu-drawer + .header__search {
   grid-area: left-icons;
 }
 
-.header:not(.header--has-menu) * > .header__search {
-  display: none;
-}
+
 
 .header__search {
   display: inline-flex;
