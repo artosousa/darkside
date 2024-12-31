@@ -96,23 +96,77 @@
     {%- endif -%}
 
     <div class="{% if section.settings.filter_type == 'vertical' %} facets-vertical page-width{% endif %}">
+      
       {{ 'component-facets.css' | asset_url | stylesheet_tag }}
+      <span id="collection-filtering-toggle">FILTERS</span> 
       <script src="{{ 'facets.js' | asset_url }}" defer="defer"></script>
       {%- if section.settings.enable_filtering or section.settings.enable_sorting -%}
         <aside
           aria-labelledby="verticalTitle"
-          class="facets-wrapper{% unless section.settings.enable_filtering %} facets-wrapper--no-filters{% endunless %}{% if section.settings.filter_type != 'vertical' %} page-width{% endif %}"
+          id="sidebar"
+          class=" facets-wrapper{% unless section.settings.enable_filtering %} facets-wrapper--no-filters{% endunless %}{% if section.settings.filter_type != 'vertical' %} page-width{% endif %}"
           id="main-collection-filters"
           data-id="{{ section.id }}"
         >
-          {% render 'facets',
-            results: collection,
-            enable_filtering: section.settings.enable_filtering,
-            enable_sorting: section.settings.enable_sorting,
-            filter_type: section.settings.filter_type,
-            paginate: paginate
-          %}
+          <div id="sidebar-mobile-filtering-close"><span><i class="fa fa-close"></i> Close</span></div>
+          {% if collection.handle == 'wheels' %}
+            {% render 'filter-collections-wheels' %}
+          {% else %}
+            {% render 'filter-collections' %}
+          {% endif %}
         </aside>
+        <div id="modal-overlay"></div>
+        <script>
+          document.addEventListener('DOMContentLoaded', () => {
+              const body = document.body;
+
+              // Toggle modal and sidebar
+              const toggleButton = document.getElementById('collection-filtering-toggle');
+              const closeButton = document.getElementById('sidebar-mobile-filtering-close');
+              const sidebar = document.getElementById('sidebar');
+
+              toggleButton?.addEventListener('click', () => {
+                body.classList.toggle('modal-shown');
+                sidebar.classList.toggle('shown');
+              });
+
+              closeButton?.addEventListener('click', () => {
+                body.classList.toggle('modal-shown');
+                sidebar.classList.toggle('shown');
+              });
+
+              // Toggle filter group collapse
+              const filteringGroups = document.querySelectorAll('.sidebar-filtering-group h3');
+              filteringGroups.forEach((heading) => {
+                heading.addEventListener('click', () => {
+                  const icon = heading.querySelector('i');
+                  icon?.classList.toggle('fa-rotate-270');
+                  heading.parentElement?.classList.toggle('collapsed');
+                });
+              });
+
+              // Parse URL query parameters
+              const Shopify = { queryParams: {} };
+              if (location.search.length) {
+                const searchParams = new URLSearchParams(location.search);
+                searchParams.forEach((value, key) => {
+                  Shopify.queryParams[key] = value;
+                });
+              }
+
+              // Handle sort-by dropdown change
+              const sortBySelect = document.getElementById('sort-by-select');
+              if (sortBySelect) {
+                sortBySelect.value = '{{ collection.sort_by | default: collection.default_sort_by | escape }}';
+                sortBySelect.addEventListener('change', () => {
+                  Shopify.queryParams.sort_by = sortBySelect.value;
+                  const newSearch = new URLSearchParams(Shopify.queryParams).toString().replace(/\+/g, '%20');
+                  location.search = `?${newSearch}`;
+                });
+              }
+          });
+
+        </script>
       {%- endif -%}
 
       <div

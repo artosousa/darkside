@@ -1,0 +1,305 @@
+<div id="sidebar-filtering" class="sidebar-widget">
+  {% capture manufacturers_list %}{{ settings.filtering_manufacturers }}{% endcapture %}
+  {% assign manufacturers = manufacturers_list | replace: ' ,', ',' | replace: ', ', ',' | split: ',' %}
+  {% assign all_filter_tags = '' %}
+  {% assign show_manufacturers = false %}
+  {% assign manufacturers_count = 0 %}
+  {% for manufacturer in manufacturers %}
+  {% if collection.all_tags contains manufacturer %}
+  {% assign show_manufacturers = true %}
+  {% assign manufacturers_count = manufacturers_count | plus:1 %}
+  {% capture all_filter_tags %}{{ all_filter_tags }},{{ manufacturer }},{% endcapture %}
+  {% endif %}
+  {% endfor %}
+  {% if show_manufacturers and manufacturers_count >= 2 %}
+  <div class="sidebar-filtering-group collapsed">
+    <h3>Manufacturers <i class="fa fa-caret-down fa-rotate-270"></i></h3>
+    <ul class="sidebar-filtering-list">
+      {% assign new_tags = '' %}
+      {% for tag in current_tags %}
+      {% unless all_filter_tags contains tag %}
+      {% capture new_tags %}{{ new_tags }}+{{ tag | handle }}{% endcapture %}
+      {% endunless %}
+      {% endfor %}
+      {% capture new_tags %}{{ new_tags | remove_first: '+' }}{% endcapture %}
+      {% for manufacturer in manufacturers %}
+      {% if collection.all_tags contains manufacturer %}
+      {% if current_tags contains manufacturer %}
+      {% capture manufacturer_style %}<span class="fa fa-fw fa-check-square"></span> {{ manufacturer }}{% endcapture %}
+      <li class="{{ manufacturer | handle }} active-filter">{{ manufacturer_style | link_to_remove_tag: manufacturer }}</li>
+      {% else %}
+      {% if collection.url != '' %}
+      {% capture url %}{{ collection.url }}/{% if new_tags != '' %}{{ new_tags }}+{% endif %}{{ manufacturer | handle }}{% endcapture %}
+      {% else %}
+      {% capture url %}/collections/all/{% if new_tags != '' %}{{ new_tags }}+{% endif %}{{ manufacturer | handle }}{% endcapture %}
+      {% endif %}
+      {% capture manufacturer_style %}<span class="fa fa-fw fa-square-o"></span> {{ manufacturer }}{% endcapture %}
+      <li class="{{ manufacturer | handle }}">{{ manufacturer_style | link_to: url }}</li>
+      {% endif %}
+      {% endif %}
+      {% endfor %}
+    </ul><!-- sidebar-filtering-list -->
+  </div><!-- sidebar-filtering-group -->
+  {% endif %}
+
+  {% capture wheel_models_list %}{{ settings.filtering_wheel_models }}{% endcapture %}
+  {% assign wheel_models = wheel_models_list | replace: ' ,', ',' | replace: ', ', ',' | split: ',' %}
+  {% assign all_filter_tags = '' %}
+  {% assign show_wheel_models = false %}
+  {% assign wheel_models_count = 0 %}
+  {% for wheel_model in wheel_models %}
+  {% if collection.all_tags contains wheel_model %}
+  {% assign show_wheel_models = true %}
+  {% assign wheel_models_count = wheel_models_count | plus:1 %}
+  {% capture all_filter_tags %}{{ all_filter_tags }},{{ wheel_model }},{% endcapture %}
+  {% endif %}
+  {% endfor %}
+  {% if show_wheel_models and wheel_models_count >= 2 %}
+  <div class="sidebar-filtering-group collapsed">
+    <h3>Models <i class="fa fa-caret-down fa-rotate-270"></i></h3>
+    <ul class="sidebar-filtering-list">
+      {% assign new_tags = '' %}
+      {% for tag in current_tags %}
+      {% unless all_filter_tags contains tag %}
+      {% capture new_tags %}{{ new_tags }}+{{ tag | handle }}{% endcapture %}
+      {% endunless %}
+      {% endfor %}
+      {% capture new_tags %}{{ new_tags | remove_first: '+' }}{% endcapture %}
+      {% for wheel_model in wheel_models %}
+      {% if collection.all_tags contains wheel_model %}
+      {% if current_tags contains wheel_model %}
+      {% capture wheel_model_style %}<span class="fa fa-fw fa-check-square"></span> {{ wheel_model }}{% endcapture %}
+      <li class="{{ wheel_model| handle }} active-filter">{{ wheel_model_style | link_to_remove_tag: wheel_model }}</li>
+      {% else %}
+      {% if collection.url != '' %}
+      {% capture url %}{{ collection.url }}/{% if new_tags != '' %}{{ new_tags }}+{% endif %}{{ wheel_model| handle }}{% endcapture %}
+      {% else %}
+      {% capture url %}/collections/all/{% if new_tags != '' %}{{ new_tags }}+{% endif %}{{ wheel_model| handle }}{% endcapture %}
+      {% endif %}
+      {% capture wheel_model_style %}<span class="fa fa-fw fa-square-o"></span> {{ wheel_model }}{% endcapture %}
+      <li class="{{ wheel_model | handle }}">{{ wheel_model_style | link_to: url }}</li>
+      {% endif %}
+      {% endif %}
+      {% endfor %}
+    </ul><!-- sidebar-filtering-list -->
+  </div><!-- sidebar-filtering-group -->
+  {% endif %}
+
+
+
+  {% capture parts_list %}{{ settings.filtering_parts }}{% endcapture %}
+  {% assign parts = parts_list | replace: ' ,', ',' | replace: ', ', ',' | split: ',' %}
+  {% assign all_filter_tags = '' %}
+  {% assign show_parts = false %}
+  {% assign parts_count = 0 %}
+  {% for part in parts %}
+  {% if collection.all_tags contains part %}
+  {% assign show_parts = true %}
+  {% assign parts_count = parts_count | plus:1 %}
+  {% capture all_filter_tags %}{{ all_filter_tags }},{{ part }},{% endcapture %}
+  {% endif %}
+  {% endfor %}
+  {% if show_parts and parts_count >= 2 %}
+  <div class="sidebar-filtering-group collapsed">
+    <h3>Parts <i class="fa fa-caret-down fa-rotate-270"></i></h3>
+    <ul class="sidebar-filtering-list">
+      {% assign new_tags = '' %}
+      {% for tag in current_tags %}
+      {% unless all_filter_tags contains tag %}
+      {% capture new_tags %}{{ new_tags }}+{{ tag | handle }}{% endcapture %}
+      {% endunless %}
+      {% endfor %}
+      {% capture new_tags %}{{ new_tags | remove_first: '+' }}{% endcapture %}
+      {% for part in parts %}
+      {% if collection.all_tags contains part %}
+      {% if current_tags contains part %}
+      {% capture part_style %}<span class="fa fa-fw fa-check-square"></span> {{ part }}{% endcapture %}
+      <li class="{{ part | handle }} active-filter">{{ part_style | link_to_remove_tag: part }}</li>
+      {% else %}
+      {% if collection.url != '' %}
+      {% capture url %}{{ collection.url }}/{% if new_tags != '' %}{{ new_tags }}+{% endif %}{{ part | handle }}{% endcapture %}
+      {% else %}
+      {% capture url %}/collections/all/{% if new_tags != '' %}{{ new_tags }}+{% endif %}{{ part | handle }}{% endcapture %}
+      {% endif %}
+      {% capture part_style %}<span class="fa fa-fw fa-square-o"></span> {{ part }}{% endcapture %}
+      <li class="{{ part | handle }}">{{ part_style | link_to: url }}</li>
+      {% endif %}
+      {% endif %}
+      {% endfor %}
+    </ul><!-- sidebar-filtering-list -->
+  </div><!-- sidebar-filtering-group -->
+  {% endif %}
+  
+
+  {% capture brands_list %}{{ settings.filtering_brands }}{% endcapture %}
+  {% assign brands = brands_list | replace: ' ,', ',' | replace: ', ', ',' | split: ',' %}
+  {% assign all_filter_tags = '' %}
+  {% assign show_brands = false %}
+  {% assign brands_count = 0 %}
+  {% for brand in brands %}
+  {% if collection.all_tags contains brand %}
+  {% assign show_brands = true %}
+  {% assign brands_count = brands_count | plus:1 %}
+  {% capture all_filter_tags %}{{ all_filter_tags }},{{ brand }},{% endcapture %}
+  {% endif %}
+  {% endfor %}
+  {% if show_brands and brands_count >= 2 %}
+  <div class="sidebar-filtering-group collapsed">
+    <h3>Brands <i class="fa fa-caret-down fa-rotate-270"></i></h3>
+    <ul class="sidebar-filtering-list">
+      {% assign new_tags = '' %}
+      {% for tag in current_tags %}
+      {% unless all_filter_tags contains tag %}
+      {% capture new_tags %}{{ new_tags }}+{{ tag | handle }}{% endcapture %}
+      {% endunless %}
+      {% endfor %}
+      {% capture new_tags %}{{ new_tags | remove_first: '+' }}{% endcapture %}
+      {% for brand in brands %}
+      {% if collection.all_tags contains brand %}
+      {% if current_tags contains brand %}
+      {% capture brand_style %}<span class="fa fa-fw fa-check-square"></span> {{ brand }}{% endcapture %}
+      <li class="{{ brand | handle }} active-filter">{{ brand_style | link_to_remove_tag: brand }}</li>
+      {% else %}
+      {% if collection.url != '' %}
+      {% capture url %}{{ collection.url }}/{% if new_tags != '' %}{{ new_tags }}+{% endif %}{{ brand | handle }}{% endcapture %}
+      {% else %}
+      {% capture url %}/collections/all/{% if new_tags != '' %}{{ new_tags }}+{% endif %}{{ brand | handle }}{% endcapture %}
+      {% endif %}
+      {% capture brand_style %}<span class="fa fa-fw fa-square-o"></span> {{ brand }}{% endcapture %}
+      <li class="{{ brand | handle }}">{{ brand_style | link_to: url }}</li>
+      {% endif %}
+      {% endif %}
+      {% endfor %}
+    </ul><!-- sidebar-filtering-list -->
+  </div><!-- sidebar-filtering-group -->
+  {% endif %}
+
+  {% capture wheel_sizes_list %}{{ settings.filtering_wheel_sizes }}{% endcapture %}
+  {% assign wheel_sizes = wheel_sizes_list | replace: ' ,', ',' | replace: ', ', ',' | split: ',' %}
+  {% assign all_filter_tags = '' %}
+  {% assign show_wheel_sizes = false %}
+  {% assign wheel_sizes_count = 0 %}
+  {% for wheel_size in wheel_sizes %}
+  {% if collection.all_tags contains wheel_size %}
+  {% assign show_wheel_sizes = true %}
+  {% assign wheel_sizes_count = wheel_sizes_count | plus:1 %}
+  {% capture all_filter_tags %}{{ all_filter_tags }},{{ wheel_size }},{% endcapture %}
+  {% endif %}
+  {% endfor %}
+  {% if show_wheel_sizes and wheel_sizes_count >= 2 %}
+  <div class="sidebar-filtering-group collapsed">
+    <h3>Wheel Size <i class="fa fa-caret-down fa-rotate-270"></i></h3>
+    <ul class="sidebar-filtering-list">
+      {% assign new_tags = '' %}
+      {% for tag in current_tags %}
+      {% unless all_filter_tags contains tag %}
+      {% capture new_tags %}{{ new_tags }}+{{ tag | handle }}{% endcapture %}
+      {% endunless %}
+      {% endfor %}
+      {% capture new_tags %}{{ new_tags | remove_first: '+' }}{% endcapture %}
+      {% for wheel_size in wheel_sizes %}
+      {% if collection.all_tags contains wheel_size %}
+      {% if current_tags contains wheel_size %}
+      {% capture wheel_size_style %}<span class="fa fa-fw fa-check-square"></span> {{ wheel_size }}{% endcapture %}
+      <li class="{{ wheel_size| handle }} active-filter">{{ wheel_size_style | link_to_remove_tag: wheel_size }}</li>
+      {% else %}
+      {% if collection.url != '' %}
+      {% capture url %}{{ collection.url }}/{% if new_tags != '' %}{{ new_tags }}+{% endif %}{{ wheel_size| handle }}{% endcapture %}
+      {% else %}
+      {% capture url %}/collections/all/{% if new_tags != '' %}{{ new_tags }}+{% endif %}{{ wheel_size| handle }}{% endcapture %}
+      {% endif %}
+      {% capture wheel_size_style %}<span class="fa fa-fw fa-square-o"></span> {{ wheel_size }}{% endcapture %}
+      <li class="{{ wheel_size | handle }}">{{ wheel_size_style | link_to: url }}</li>
+      {% endif %}
+      {% endif %}
+      {% endfor %}
+    </ul><!-- sidebar-filtering-list -->
+  </div><!-- sidebar-filtering-group -->
+  {% endif %}
+
+  {% capture wheel_colors_list %}{{ settings.filtering_wheel_colors }}{% endcapture %}
+  {% assign wheel_colors = wheel_colors_list | replace: ' ,', ',' | replace: ', ', ',' | split: ',' %}
+  {% assign all_filter_tags = '' %}
+  {% assign show_wheel_colors = false %}
+  {% assign wheel_colors_count = 0 %}
+  {% for wheel_color in wheel_colors_count %}
+  {% if collection.all_tags contains wheel_color %}
+  {% assign show_wheel_colors = true %}
+  {% assign wheel_colors_count = wheel_colors_count | plus:1 %}
+  {% capture all_filter_tags %}{{ all_filter_tags }},{{ wheel_color }},{% endcapture %}
+  {% endif %}
+  {% endfor %}
+
+  <div class="sidebar-filtering-group collapsed">
+    <h3>Wheel Color <i class="fa fa-caret-down fa-rotate-270"></i></h3>
+    <ul class="sidebar-filtering-list">
+      {% assign new_tags = '' %}
+      {% for tag in current_tags %}
+      {% unless all_filter_tags contains tag %}
+      {% capture new_tags %}{{ new_tags }}+{{ tag | handle }}{% endcapture %}
+      {% endunless %}
+      {% endfor %}
+      {% capture new_tags %}{{ new_tags | remove_first: '+' }}{% endcapture %}
+      {% for wheel_color in wheel_colors %}
+      {% if collection.all_tags contains wheel_color %}
+      {% if current_tags contains wheel_color %}
+      {% capture wheel_color_style %}<span class="fa fa-fw fa-check-square"></span> {{ wheel_color }}{% endcapture %}
+      <li class="{{ wheel_color| handle }} active-filter">{{ wheel_color_style | link_to_remove_tag: wheel_color }}</li>
+      {% else %}
+      {% if collection.url != '' %}
+      {% capture url %}{{ collection.url }}/{% if new_tags != '' %}{{ new_tags }}+{% endif %}{{ wheel_color| handle }}{% endcapture %}
+      {% else %}
+      {% capture url %}/collections/all/{% if new_tags != '' %}{{ new_tags }}+{% endif %}{{ wheel_color| handle }}{% endcapture %}
+      {% endif %}
+      {% capture wheel_color_style %}<span class="fa fa-fw fa-square-o"></span> {{ wheel_color }}{% endcapture %}
+      <li class="{{ wheel_color | handle }}">{{ wheel_color_style | link_to: url }}</li>
+      {% endif %}
+      {% endif %}
+      {% endfor %}
+    </ul><!-- sidebar-filtering-list -->
+  </div><!-- sidebar-filtering-group -->
+
+
+  {% capture prices_list %}{{ settings.filtering_prices }}{% endcapture %}
+  {% assign prices = prices_list | replace: ' ,', ',' | replace: ', ', ',' | split: ',' %}
+  {% assign all_filter_tags = '' %}
+  {% assign show_prices = false %}
+  {% assign prices_count = 0 %}
+  {% for price in prices %}
+  {% if collection.all_tags contains price%}
+  {% assign show_prices = true %}
+  {% assign prices_count = prices_count | plus:1 %}
+  {% capture all_filter_tags %}{{ all_filter_tags }},{{ price}},{% endcapture %}
+  {% endif %}
+  {% endfor %}
+  {% if show_prices and prices_count >= 2 %}
+  <div class="sidebar-filtering-group ">
+    <h3>Price <i class="fa fa-caret-down fa-rotate-270"></i></h3>
+    <ul class="sidebar-filtering-list">
+      {% assign new_tags = '' %}
+      {% for tag in current_tags %}
+      {% unless all_filter_tags contains tag %}
+      {% capture new_tags %}{{ new_tags }}+{{ tag | handle }}{% endcapture %}
+      {% endunless %}
+      {% endfor %}
+      {% capture new_tags %}{{ new_tags | remove_first: '+' }}{% endcapture %}
+      {% for price in prices %}
+      {% if collection.all_tags contains price%}
+      {% if current_tags contains price%}
+      {% capture price_style %}<span class="fa fa-fw fa-check-square"></span> {{ price}}{% endcapture %}
+      <li class="{{ price| handle }} active-filter">{{ price_style | link_to_remove_tag: price}}</li>
+      {% else %}
+      {% if collection.url != '' %}
+      {% capture url %}{{ collection.url }}/{% if new_tags != '' %}{{ new_tags }}+{% endif %}{{ price| handle }}{% endcapture %}
+      {% else %}
+      {% capture url %}/collections/all/{% if new_tags != '' %}{{ new_tags }}+{% endif %}{{ price| handle }}{% endcapture %}
+      {% endif %}
+      {% capture price_style %}<span class="fa fa-fw fa-square-o"></span> {{ price}}{% endcapture %}
+      <li class="{{ price| handle }}">{{ price_style | link_to: url }}</li>
+      {% endif %}
+      {% endif %}
+      {% endfor %}
+    </ul><!-- sidebar-filtering-list -->
+  </div><!-- sidebar-filtering-group -->
+  {% endif %}
+</div><!-- sidebar-filtering -->

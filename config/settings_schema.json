@@ -622,8 +622,66 @@
     ]
   },
   {
+    "name": "Collections",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Filtering Options"
+      },
+      {
+        "type": "textarea",
+        "id": "filtering_manufacturers",
+        "label": "Manufacturers List",
+        "info": "Comma separated list of manufacturers exactly as you added them to products."
+      },
+      {
+        "type": "textarea",
+        "id": "filtering_parts",
+        "label": "Parts List",
+        "info": "Comma separated list of parts tags exactly as you added them to products."
+      },
+      {
+        "type": "textarea",
+        "id": "filtering_brands",
+        "label": "Brands List",
+        "info": "Comma separated list of brands tags exactly as you added them to products."
+      },
+      {
+        "type": "textarea",
+        "id": "filtering_finshes",
+        "label": "Finishes List",
+        "info": "Comma separated list of finishes tags exactly as you added them to products."
+      },
+      {
+        "type": "textarea",
+        "id": "filtering_prices",
+        "label": "Prices List",
+        "info": "Comma separated list of prices tags exactly as you added them to products."
+      },
+      {
+        "type": "textarea",
+        "id": "filtering_wheel_models",
+        "label": "Wheel Models List",
+        "info": "Comma separated list of parts tags exactly as you added them to products."
+      },
+      {
+        "type": "textarea",
+        "id": "filtering_wheel_colors",
+        "label": "Wheel Colors List",
+        "info": "Comma separated list of parts tags exactly as you added them to products."
+      },
+      {
+        "type": "textarea",
+        "id": "filtering_wheel_sizes",
+        "label": "Wheel Sizes List",
+        "info": "Comma separated list of parts tags exactly as you added them to products."
+      }
+    ]
+  },
+  {
     "name": "t:settings_schema.collection_cards.name",
     "settings": [
+      
       {
         "type": "select",
         "id": "collection_card_style",
