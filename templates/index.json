@@ -12,18 +12,18 @@
     "slideshow_nYMJC8": {
       "type": "slideshow",
       "blocks": {
-        "slide_wtQYxT": {
+        "slide_qC3qE7": {
           "type": "slide",
           "settings": {
             "image": "shopify://shop_images/image008_1.jpg",
-            "heading": "Image slide",
-            "heading_size": "h1",
-            "subheading": "Tell your brand's story through images",
-            "button_label": "Button label",
+            "heading": "",
+            "heading_size": "h2",
+            "subheading": "",
+            "button_label": "",
             "link": "",
             "button_style_secondary": false,
             "box_align": "middle-center",
-            "show_text_box": true,
+            "show_text_box": false,
             "text_alignment": "center",
             "image_overlay_opacity": 0,
             "color_scheme": "scheme-1",
@@ -104,7 +104,7 @@
         }
       },
       "block_order": [
-        "slide_wtQYxT",
+        "slide_qC3qE7",
         "slide_kWCYLY",
         "slide_9MTgQd",
         "slide_7maByU",
