@@ -12,15 +12,6 @@
     "main": {
       "type": "main-product",
       "blocks": {
-        "collapsible_tab_qRciLK": {
-          "type": "collapsible_tab",
-          "settings": {
-            "heading": "Details",
-            "icon": "check_mark",
-            "content": "",
-            "page": ""
-          }
-        },
         "title": {
           "type": "title",
           "settings": {}
@@ -63,6 +54,15 @@
         "description": {
           "type": "description",
           "settings": {}
+        },
+        "collapsible_tab_qRciLK": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Details",
+            "icon": "check_mark",
+            "content": "",
+            "page": ""
+          }
         },
         "collapsible-row-0": {
           "type": "collapsible_tab",
@@ -113,7 +113,6 @@
         }
       },
       "block_order": [
-        "collapsible_tab_qRciLK",
         "title",
         "sku_afNLGj",
         "caption",
@@ -122,6 +121,7 @@
         "quantity_selector",
         "buy_buttons",
         "description",
+        "collapsible_tab_qRciLK",
         "collapsible-row-0",
         "collapsible-row-1",
         "collapsible-row-2",
