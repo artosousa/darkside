@@ -12,10 +12,15 @@
     "main": {
       "type": "main-product",
       "blocks": {
+        "custom_liquid_nQ6HRR": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "{{ product.selected_or_first_available_variant.metafields.custom.variant_description | metafield_tag }}"
+          }
+        },
         "title": {
           "type": "title",
-          "settings": {
-          }
+          "settings": {}
         },
         "sku_afNLGj": {
           "type": "sku",
@@ -32,8 +37,7 @@
         },
         "price": {
           "type": "price",
-          "settings": {
-          }
+          "settings": {}
         },
         "variant_picker": {
           "type": "variant_picker",
@@ -44,8 +48,7 @@
         },
         "quantity_selector": {
           "type": "quantity_selector",
-          "settings": {
-          }
+          "settings": {}
         },
         "buy_buttons": {
           "type": "buy_buttons",
@@ -56,8 +59,7 @@
         },
         "description": {
           "type": "description",
-          "settings": {
-          }
+          "settings": {}
         },
         "collapsible-row-0": {
           "type": "collapsible_tab",
@@ -108,6 +110,7 @@
         }
       },
       "block_order": [
+        "custom_liquid_nQ6HRR",
         "title",
         "sku_afNLGj",
         "caption",
