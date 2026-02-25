@@ -9,17 +9,19 @@
 </style>
 <script defer>
     var variantDescriptions = [];
-    var variantDescriptionsById = [];
 
     var vds = document.getElementsByClassName('variant-description-container');
     var vd, vid;
     for (var i = 0, l = vds.length; i < l; i++) {
         vd = vds[i];
         vid = vd.getAttribute('data-variant-id');
-        console.log(vid);
+        variantDescriptions.push({
+            container: vd,
+            variantId: vid
+        });
     }
     function parseSelectedVariant(vs) {
-        //console.log('parsing selected variant...')
+        console.log('parsing selected variant...')
         //console.log(vs);
 
         var s = vs.querySelector('[data-selected-variant]');
@@ -28,12 +30,22 @@
         var data = JSON.parse(s.innerHTML);
         if (!data || !data.id) { return; }
         
-        //console.log('selected variant: ' + data.id);
+        var vid = data.id;
+
+        console.log('selected variant: ' + vid);
+
+        var vd;
+        for (var i = 0, l = variantDescriptions.length; i < l; i++) {
+            vd = variantDescriptions[i];
+            if (vd.variantId == vid) {
+                vd.container.classList.remove('hidden');
+            } else {
+                vd.container.classList.add('hidden');
+            }
+        }
     }
 
     document.addEventListener("DOMContentLoaded", function(){
-        console.log('hello??')
-
         var vs = document.getElementsByTagName('variant-selects');
         if (!vs.length) { return; }
         vs = vs[0]
