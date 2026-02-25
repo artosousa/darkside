@@ -8,6 +8,13 @@ variant description goes here
 
 {%- for variant in product.variants -%}
     {%- if variant.metafields.custom.description != blank -%}
-        <div class="variant-description-container" data-variant-id="{{ variant.id }}">{{ variant.metafields.custom.description | metafield_tag }}</div>
+        <div class="variant-description-container hidden" data-variant-id="{{ variant.id }}">{{ variant.metafields.custom.description | metafield_tag }}</div>
     {%- endif -%}
 {%- endfor -%}
+
+<style>
+    .variant-description-container.hidden { display: none; }
+</style>
+<script>
+    console.log('hello?')
+</script>
