@@ -3,7 +3,6 @@
         <div class="variant-description-container hidden" data-variant-id="{{ variant.id }}">{{ variant.metafields.custom.description | metafield_tag }}</div>
     {%- endif -%}
 {%- endfor -%}
-
 <style>
     .variant-description-container.hidden { display: none; }
 </style>
@@ -21,7 +20,7 @@
         });
     }
     function parseSelectedVariant(vs) {
-        console.log('parsing selected variant...')
+        //console.log('parsing selected variant...')
         //console.log(vs);
 
         var s = vs.querySelector('[data-selected-variant]');
@@ -32,7 +31,7 @@
         
         var vid = data.id;
 
-        console.log('selected variant: ' + vid);
+        //console.log('selected variant: ' + vid);
 
         var vd;
         for (var i = 0, l = variantDescriptions.length; i < l; i++) {
