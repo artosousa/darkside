@@ -204,7 +204,9 @@
                 {%- endfor -%}
                 {%- if product.description != blank or has_variant_description -%}
                   <div class="product__description rte quick-add-hidden" {{ block.shopify_attributes }}>
-                    {% render 'variant-description' with product: product %}
+                    {%- if has_variant_description -%}
+                      {% render 'variant-description' with product: product %}
+                    {%- endif -%}
                     {{ product.description }}
                   </div>
                 {%- endif -%}
