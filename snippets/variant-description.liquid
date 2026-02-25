@@ -21,7 +21,7 @@ variant description goes here
 
         var vs = document.getElementsByTagName('variant-selects');
         if (!vs.length) { return; }
-        vs = vs[0];
+        var vsParent = vs[0].parentNode;
 
         var observer = new MutationObserver(function(mutationsList, observer) {
             for (const mutation of mutationsList) {
@@ -39,7 +39,7 @@ variant description goes here
             }
         });
 
-        observer.observe(vs, { childList: true, subtree: true });
+        observer.observe(vsParent, { childList: true, subtree: true });
 
         return;
     });
