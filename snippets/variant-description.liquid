@@ -14,7 +14,7 @@
     var vds = document.getElementsByClassName('variant-description-container');
     var vd, vid;
     for (var i = 0, l = vds.length; i < l; i++) {
-        vd = vds.length;
+        vd = vds[i];
         vid = vd.getAttribute('data-variant-id');
         console.log(vid);
     }
