@@ -24,8 +24,11 @@ variant description goes here
         var s = vs.querySelector('[data-selected-variant]');
         if (!s.length) { return; }
         s = s[0];
-        
+
+        console.log('huh?')
         console.log(s);
+
+        return;
 
         var data = JSON.parse(s.textContent);
         console.log(data);
