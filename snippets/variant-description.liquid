@@ -1,11 +1,3 @@
-<!-- yoyoyo
-
-variant description goes here
-
-
-
--->
-
 {%- for variant in product.variants -%}
     {%- if variant.metafields.custom.description != blank -%}
         <div class="variant-description-container hidden" data-variant-id="{{ variant.id }}">{{ variant.metafields.custom.description | metafield_tag }}</div>
@@ -16,9 +8,18 @@ variant description goes here
     .variant-description-container.hidden { display: none; }
 </style>
 <script defer>
+    var variantDescriptions = [];
+    var variantDescriptionsById = [];
+
+    var vds = document.getElementsByClassName('variant-description-container');
+    var vd, vid;
+    for (var i = 0, l = vds.length; i < l; i++) {
+        vd = vds.length;
+        vid = vd.getAttribute('data-variant-id');
+        console.log(vid);
+    }
     function parseSelectedVariant(vs) {
-    
-        console.log('parsing selected variant...')
+        //console.log('parsing selected variant...')
         //console.log(vs);
 
         var s = vs.querySelector('[data-selected-variant]');
@@ -27,7 +28,7 @@ variant description goes here
         var data = JSON.parse(s.innerHTML);
         if (!data || !data.id) { return; }
         
-        console.log('selected variant: ' + data.id);
+        //console.log('selected variant: ' + data.id);
     }
 
     document.addEventListener("DOMContentLoaded", function(){
