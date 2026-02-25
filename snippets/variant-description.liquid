@@ -24,6 +24,8 @@ variant description goes here
         var s = vs.querySelector('[data-selected-variant]');
         if (!s.length) { return; }
 
+        console.log(s);
+
         var data = JSON.parse(s.innerHTML);
         console.log(data);
     }
