@@ -196,18 +196,15 @@
                   {%- endif -%}
                 </p>
               {%- when 'description' -%}
-
-                <!-- yoyoyo
+                {%- assign has_variant_description = false -%}
                 {%- for variant in product.variants -%}
                   {%- if variant.metafields.custom.description != blank -%}
-
-                  has variant description
+                    {%- assign has_variant_description = true -%}
                   {%- endif -%}
                 {%- endfor -%}
-                -->
-
-                {%- if product.description != blank -%}
+                {%- if product.description != blank or has_variant_description -%}
                   <div class="product__description rte quick-add-hidden" {{ block.shopify_attributes }}>
+                    
                     {{ product.description }}
                   </div>
                 {%- endif -%}
