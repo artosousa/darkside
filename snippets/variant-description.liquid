@@ -22,8 +22,7 @@ variant description goes here
         console.log(vs);
 
         var s = vs.querySelector('[data-selected-variant]');
-        if (!s.length) { return; }
-        s = s[0];
+        if (!s) { return; }
 
         console.log('huh?')
         console.log(s);
