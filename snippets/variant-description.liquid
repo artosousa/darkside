@@ -28,7 +28,7 @@ variant description goes here
                 if (mutation.type === 'childList') {
                     for (const node of mutation.addedNodes) {
 
-                        console.log('yo?')
+                        console.log('yo? ' + node.tagName)
 
                         if (node.tagName === 'SCRIPT') {
                             console.log('A script element was added to the DOM:', node.src || 'inline script');
