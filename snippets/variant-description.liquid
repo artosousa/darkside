@@ -22,8 +22,10 @@ variant description goes here
         console.log(vs);
 
         var s = vs.querySelector('[data-selected-variant]');
-        
-        console.log(s);
+        if (!s.length) { return; }
+
+        var data = JSON.parse(s.innerHTML);
+        console.log(data);
     }
 
     document.addEventListener("DOMContentLoaded", function(){
