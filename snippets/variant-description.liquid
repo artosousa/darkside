@@ -1,8 +1,13 @@
 <!-- yoyoyo
 
-
+variant description goes here
 
 
 
 -->
 
+{%- for variant in product.variants -%}
+    {%- if variant.metafields.custom.description != blank -%}
+        <div class="variant-description-container" data-variant-id="{{ variant.id }}">{{ variant.metafields.custom.description | metafield_tag }}</div>
+    {%- endif -%}
+{%- endfor -%}
