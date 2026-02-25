@@ -19,34 +19,28 @@ variant description goes here
     document.addEventListener("DOMContentLoaded", function(){
         console.log('hello??')
 
-        var test = document.getElementsByTagName('variant-selects');
-    
-        console.log(test);
+        var vs = document.getElementsByTagName('variant-selects');
+        if (!vs.length) { return; }
+        vs = vs[0];
 
-        return;
+        var observer = new MutationObserver(function(mutationsList, observer) {
+            for (const mutation of mutationsList) {
+                if (mutation.type === 'childList') {
+                    for (const node of mutation.addedNodes) {
+                        if (node.tagName === 'SCRIPT') {
+                            console.log('A script element was added to the DOM:', node.src || 'inline script');
+                            // You can add further logic here
 
-        const callback = function(mutationsList, observer) {
-    for (const mutation of mutationsList) {
-        if (mutation.type === 'childList') {
-            for (const node of mutation.addedNodes) {
-                // Check if the added node is a script element
-                if (node.tagName === 'SCRIPT') {
-                    console.log('A script element was added to the DOM:', node.src || 'inline script');
-                    // You can add further logic here
-
-                    // Optional: stop observing once the script is found
-                    // observer.disconnect();
+                            // Optional: stop observing once the script is found
+                            // observer.disconnect();
+                        }
+                    }
                 }
             }
-        }
-    }
-};
+        };);
 
-    // Create a MutationObserver instance
-const observer = new MutationObserver(callback);
+        observer.observe(vs, { childList: true, subtree: true });
 
-// Start observing the target node for configured mutations
-observer.observe(targetNode, config);
-
+        return;
     });
 </script>
