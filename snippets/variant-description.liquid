@@ -22,14 +22,15 @@ variant description goes here
         console.log(vs);
 
         var s = vs.querySelector('[data-selected-variant]');
-        if (!s) { return; }
+        if (!s.length) { return; }
+        s = s[0];
 
         console.log('huh?')
-        console.log(s);
+        console.log(s.innerHTML);
 
         return;
 
-        var data = JSON.parse(s.textContent);
+        var data = JSON.parse(s.innerHTML);
         console.log(data);
     }
 
