@@ -55,15 +55,6 @@
           "type": "description",
           "settings": {}
         },
-        "collapsible_tab_qRciLK": {
-          "type": "collapsible_tab",
-          "settings": {
-            "heading": "Details",
-            "icon": "check_mark",
-            "content": "",
-            "page": ""
-          }
-        },
         "collapsible-row-0": {
           "type": "collapsible_tab",
           "disabled": true,
@@ -121,7 +112,6 @@
         "quantity_selector",
         "buy_buttons",
         "description",
-        "collapsible_tab_qRciLK",
         "collapsible-row-0",
         "collapsible-row-1",
         "collapsible-row-2",
