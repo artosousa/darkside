@@ -205,7 +205,7 @@
                 {%- if product.description != blank or has_variant_description -%}
                   <div class="product__description rte quick-add-hidden" {{ block.shopify_attributes }}>
                     {%- if has_variant_description -%}
-                      {% render 'variant-description' with product: product %}
+                      {% render 'variant-description' with product, product: product %}
                     {%- endif -%}
                     {{ product.description }}
                   </div>
@@ -2263,3 +2263,13 @@
   ]
 }
 {% endschema %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% render 'variant-description' with product: product %}"
+  to: "{% render 'variant-description' with product, product: product %}"
+  position: 11293..11358
+{% endcomment %}
